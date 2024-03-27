@@ -1,0 +1,14 @@
+{
+    "builds":[
+        {
+            "src": "templates/home.html",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes":[
+        {
+            "src": "/(.*)",
+            "dest": "templates/home.html"
+        }
+    ]
+}

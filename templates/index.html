@@ -1,0 +1,284 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/aswadekar/E-Commerce-Website/blob/main/images/shopping-cart.png?raw=true">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: #e3b34b;
+  		overflow: hidden;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        width: 100%;
+        max-width: 40rem;
+        height: 18rem;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        margin-top: 12px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        width: 90%;
+        max-width: 40rem;
+    }
+
+    form input[type="text"] {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-size: 1rem;
+        width: 97%;
+        margin-bottom: 1rem;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    form input[type="text"]:focus {
+        border-color: #333;
+    }
+
+    form button[type="submit"] {
+        background-color: #111f3b;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        width: 40%;
+        margin-left: 10rem;
+    }
+
+    form button[type="submit"]:hover {
+        background-color: #e3b34b;
+    }
+
+    header {
+        display: flex;
+        position: absolute;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: #091c3c;
+        color: #fff;
+        margin-top: -646px;
+        height: 70px;
+        width: 100%;
+    }
+
+    .logo {
+        width: 240px;
+        height: auto;
+        margin-left: 30px;
+        margin-top: 0px;
+        cursor: pointer;
+    }
+  footer{
+  position: absolute;
+  height: 60px;
+  width: 104%;
+  margin-top: 686px;
+  background-color: #111f3b;
+  }
+</style>
+
+<body>
+    <header>
+        <a href="/"><img src="https://github.com/aswadekar/E-Commerce-Website/blob/main/logo3.jpg?raw=true" alt="ShopGenius Logo" class="logo" /></a>
+
+    </header>
+    <div class="container">
+
+        <h1>Search  Your  Product</h1><br>
+        <form method="POST">
+            <input type="text" name="product" placeholder="Product name" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <footer>
+      <p style="color: #fff; margin-left: 515px; margin-top: 20px;">Ⓒ ShopGenius  &nbsp;&nbsp;|&nbsp;&nbsp;  All Rights Reserved. Website Designed By Atharva Wadekar</p>
+    </footer>
+</body>
+
+</html> -->
+
+<!------------------------------------------------New Design -------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Price Comparison</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/aswadekar/E-Commerce-Website/blob/main/images/shopping-cart.png?raw=true">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<style>
+
+.bg-dark {
+    background-color: #091c3c !important;
+}
+#navbar {
+    height: 105px;
+    padding: 1rem;
+}
+.logo {
+    height: auto;
+    width: 260px;
+
+}
+#main-body {
+    background-color: #e3b34b;
+    padding: 6rem 16rem 0rem 16rem !important;
+    height: 36rem;
+    
+}
+#head-line {
+    padding-top: 4rem; 
+    font-family: "Oswald", sans-serif;
+    font-size: 2.8rem;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Loader */
+.button__text {
+  font: 20px "Quicksand", san-serif;
+  color: #000000;
+  transition: all 0.2s;
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 146px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: orange;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+
+@media only screen and (max-width: 1348px) {
+#main-body {
+    padding: 0rem 9rem !important;
+    height: 56rem;
+}
+}
+
+
+@media only screen and (max-width: 768px) {
+#main-body {
+    padding: 0rem 6rem !important;
+    height: 48rem;
+}
+}
+
+
+@media only screen and (max-width: 500px) {
+#main-body {
+    padding: 0rem 3rem !important;
+    height: 46rem;
+}
+}
+
+
+</style>
+
+<body>
+    <header class="bg-dark fixed" id="navbar">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="https://github.com/aswadekar/E-Commerce-Website/blob/main/logo3.jpg?raw=true" alt="ShopGenius Logo" class="logo"/>
+            </a>
+        </div>
+    </header>
+    <div class="container-fluid" id="main-body">
+        <h1 class="text-center" id="head-line">Search Your Product</h1>
+        <form method="POST" id="search-form" class="mt-5">
+            <div class="mb-3">
+                <input type="text" name="product" class="form-control" placeholder="Product name" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" style="width: 140px; height: 55px;" class="btn btn-warning" onclick="this.classList.toggle('button--loading')">
+                    <span class="button__text">Search</span>
+                </button>
+            </div>
+               
+        </form>
+    </div>
+    <footer class="bg-dark fixed-bottom text-center p-3 mt-5">
+        <p style="color: #fff;">Ⓒ ShopGenius &nbsp;&nbsp;|&nbsp;&nbsp; All Rights Reserved. Website Designed By Atharva Wadekar</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoJtKh7z7lGz7fuP4F8nfdFvAOA6Gg/z6Y5J6XqqyGXYM2ntXU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xMp9MvcJ4" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopGenius - Product Recommendation</title>
+    <link rel="icon" type="image/x-icon" href="https://github.com/aswadekar/E-Commerce-Website/blob/main/images/shopping-cart.png?raw=true">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  background-color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 1000px;
+  display: flex;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f5f6fa;
+  padding: 10px;
+}
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+header input[type="text"] {
+  padding: 5px 5px;
+  outline: none;
+  width: 500px;
+  height: 34px;
+  margin-bottom: 0px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+.sidebar h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar ul li {
+  margin: 5px 0;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.sidebar ul li:hover {
+  background-color: #dcdde1;
+}
+.content {
+  flex: 4;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+  cursor: pointer;
+}
+.product {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  overflow: hidden;
+}
+
+.product .img {
+  flex: 1;
+}
+.product .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: 0.5s;
+  transform: scale(0.75);
+}
+.product:hover img {
+  transform: scale(1);
+}
+.product .product-details {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-details span:nth-child(1) {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.product-details span:nth-child(2) {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+.product-details span:nth-child(3) {
+  font-size: 11px;
+  font-weight: 600;
+  color: #16a085;
+}
+.product-details span:nth-child(4) {
+  font-size: 14px;
+  font-weight: 500;
+  color: grey;
+}
+.product-details span:nth-child(5) {
+  font-size: 14px;
+  font-weight: 500;
+  color: grey;
+}
+.product-details span:nth-child(6) {
+  font-size: 14px;
+  font-weight: 500;
+  color: #d79a0b;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #091c3c; /* #091c3c #111f3b */
+    color: #fff;
+    margin-top: 0px;
+    height: 92px;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    width: 240px;
+    height: auto;
+    margin-left: 30px;
+    margin-top: 8px;
+}
+
+
+.container {
+  display: flex;
+  height: 100%;
+  overflow: hidden; /* Hide overflow for the entire container */
+}
+
+/* Style sidebar */
+.sidebar {
+  flex: 0 0 250px; /* Fixed width for sidebar */
+  background-color: #f4f4f4;
+  padding: 20px;
+  position: fixed; /* Fix the sidebar position */
+  top: 80px; /* Align to top */
+  bottom: 0; /* Fill entire vertical space */
+}
+
+/* Style content */
+.content {
+  flex: 1; /* Fill remaining space */
+  padding: 20px;
+  margin-left: 370px; /* Ensure content area doesn't overlap sidebar */
+  margin-top: 80px;
+}
+
+/* Style price range */
+.price {
+  margin-top: 20px;
+}
+footer{
+  position: absolute;
+  height: 60px;
+  width: 83.5%;
+  margin-top: 0px;
+  margin-left: -140px;
+  background-color: #111f3b;
+  text-align: center;
+  }
+
+
+  .button-2 {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-3 {
+  background-color: rgba(34, 34, 34, 0.114);
+  border-radius: 8px;
+  border-width: 0;
+  color: #2c2c2c;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.price-sort {
+  width: 300px;
+  margin-left: 9px;
+}
+.rating-sort {
+  margin-left: 240px;
+  margin-top: -77px;
+  padding-bottom: 20px;
+}
+
+
+
+</style>
+<body>
+    <header>
+      <a href="/"><img src="https://github.com/aswadekar/E-Commerce-Website/blob/main/logo3.jpg?raw=true" alt="ShopGenius Logo" class="logo" /></a>
+      <i class="fa fa-search" style="margin-left: 660px;"></i>
+        <input type="text" id="txtSearch" placeholder="&nbsp; Search Product...">
+    </header>
+    <div class="container"> 
+        <div class="sidebar">
+            <h3>Category</h3>
+            <ul class="category-list">
+    
+            </ul>
+            <br>
+            <h3>Brands</h3>
+            <ul class="brand-list">
+    
+            </ul>
+            <br>
+            <h3>Price Range</h3>
+            <div class="price">
+                <input type="range" id="priceRange">
+                <span class="priceValue">100000</span>
+            </div>
+            <div>
+              <label for="ram">RAM:</label>
+              <select id="ram">
+                  <option value="">All</option>
+                  <option value="8">8GB</option>
+                  <option value="12">12GB</option>
+                  <option value="16">16GB</option>
+              </select>
+          </div>
+          <div>
+              <label for="rom">ROM:</label>
+              <select id="rom">
+                  <option value="">All</option>
+                  <option value="64">64GB</option>
+                  <option value="128">128GB</option>
+                  <option value="256">256GB</option>
+              </select>
+          </div>
+        </div>
+        <div class="content">
+          <div class="price-sort">
+            <h3 style="margin-top: 10px;">Sort By Price: &nbsp;</h3>
+            <button class="button-2" role="button" id="sortLowToHigh">Low to High</button>
+            <button class="button-2" role="button" id="sortHighToLow">High to Low</button>
+          </div>
+          <div class="rating-sort">
+            <h3 style="margin-top: 10px;">Sort By Rating: &nbsp;</h3>
+            <button class="button-2" role="button" id="sortLow">Low to High</button>
+            <button class="button-2" role="button" id="sortHigh">High to Low</button>
+          </div>  
+          <!-- <button class="button-2" role="button">Button 2</button> -->
+
+            <div class="products"></div>
+            <footer>
+                <p style="color: #fff; margin-top: 16px; " >Ⓒ ShopGenius  &nbsp;&nbsp;|&nbsp;&nbsp;  All Rights Reserved. Website Designed By Atharva Wadekar</p>
+              </footer>
+        </div>
+    </div>
+    <script>
+        const data = [
+    { 
+        id: 1,
+        name: "Samsung Galaxy S22 Ultra",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/w/t/r/-original-imaggj68cgtdacxn.jpeg?q=70&crop=false",
+        amt: 109999,
+        ram: 12,
+        rom: 256,
+        seller: "Samsung",
+        catagory: "Mobiles",
+        "reviews": 4.5,
+        info: "https://www.flipkart.com/samsung-galaxy-s22-ultra-5g-phantom-black-256-gb/p/itm7ca5bd1817da5?pid=MOBGGG2YA4MHBBZZ&lid=LSTMOBGGG2YA4MHBBZZM13247&marketplace=FLIPKART&q=s22%20ultra%20mobile&sattr[]=color&st=color"
+    },
+    
+    { 
+        id: 2,
+        name: "Apple iPhone 14 Pro Max",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/k/s/t/-original-imaghxengzjc2djt.jpeg?q=70&crop=false",
+        amt: 157999,
+        ram: 8,
+        rom: 128,     
+        seller: "Apple",
+        catagory: "Mobiles",
+        "reviews": 4.6,
+        info: "https://www.flipkart.com/apple-iphone-14-pro-max-silver-512-gb/p/itm450e8757732f9?pid=MOBGHWFHEQA2GSCS&lid=LSTMOBGHWFHEQA2GSCSRTXNPU&marketplace=FLIPKART&q=iphone+14+pro+max&store=tyy%2F4io&srno=s_1_2&otracker=AS_QueryStore_OrganicAutoSuggest_1_13_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_13_na_na_ps&fm=search-autosuggest&iid=f86e61e8-475a-418d-a41b-90b035c4d522.MOBGHWFHEQA2GSCS.SEARCH&ppt=sp&ppn=sp&ssid=3p3ix3394w0000001709474484789&qH=37e37d60a349d989"
+    },
+    
+    { 
+        id: 3,
+        name: "OnePlus 10 Pro",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/l/j/q/-original-imagkgshx9kfayxq.jpeg?q=70&crop=false",
+        amt: 61999,
+        ram: 12,
+        rom: 256,
+        seller: "OnePlus",
+        catagory: "Mobiles",
+        "reviews": 4.2,
+        info: "https://www.flipkart.com/oneplus-10-pro-5g-emerald-forest-128-gb/p/itm0367c37ac9417?pid=MOBGQ9PXJ65TB7SB&lid=LSTMOBGQ9PXJ65TB7SBE0EYDK&marketplace=FLIPKART&q=oneplus+10+pro&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=organic&iid=604cf5ba-32a2-4eae-9ab6-2220968bd09a.MOBGQ9PXJ65TB7SB.SEARCH&ppt=None&ppn=None&ssid=1qkwd0tvm80000001709620693808&qH=c2530500a12909a1",
+    },
+    
+    { 
+        id: 4,
+        name: "Xiaomi Mi 12 Pro",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/7/y/u/-original-imagqmtfu8gt62yv.jpeg?q=70&crop=false",
+        amt: 54999,
+        ram: 8,
+        rom: 128,
+        seller: "Xiaomi",
+        catagory: "Mobiles",
+        "reviews": 4.0,
+        info:"https://www.amazon.in/Xiaomi-Couture-Storage-Snapdragon-Flagship/dp/B09XB9FLSH?th=1",
+    },
+    
+    { 
+        id: 5,
+        name: "Oppo Find N3 Flip",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/3/4/i/-original-imagu8h9snemswmc.jpeg?q=70&crop=false",
+        amt: 94999,
+        ram: 8,
+        rom: 128,
+        seller: "Oppo",
+        catagory: "Mobiles",
+        "reviews": 4.4,
+        info:"https://www.flipkart.com/search?q=oppo+find+n3+flip&as=on&as-show=on&otracker=AS_Query_OrganicAutoSuggest_3_8_na_na_ps&otracker1=AS_Query_OrganicAutoSuggest_3_8_na_na_ps&as-pos=3&as-type=RECENT&suggestionId=oppo+find+n3+flip&requestId=817a9c49-dc6c-49d9-9416-dea262b3e134&as-searchtext=oppo%20fin",
+    },
+    
+    { 
+        id: 6,
+        name: "Vivo X80 Pro",
+        img: "https://rukminim2.flixcart.com/image/416/416/l3929ow0/mobile/v/n/s/-original-imageewzeguggzvc.jpeg?q=70&crop=false",
+        amt: 74999,
+        ram: 8,
+        rom: 128,
+        seller: "Vivo",
+        catagory: "Mobiles",
+        "reviews": 4.4,
+        info:"https://www.flipkart.com/vivo-x80-pro-cosmic-black-256-gb/p/itm91e0e7dd2d74d?pid=MOBGE89YSMWJV5PZ&lid=LSTMOBGE89YSMWJV5PZCBLFXL&marketplace=FLIPKART&q=vivo+x80+pro&store=tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&fm=organic&iid=e42200a7-d9c4-46f1-b45b-686f9a1e545b.MOBGE89YSMWJV5PZ.SEARCH&ppt=None&ppn=None&ssid=pg743angc00000001709656362507&qH=de5500b73ca314d2",
+    },
+    
+    { 
+        id: 7,
+        name: "Poco C51",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/6/v/0/c51-mzb0dxkin-poco-original-imagzdpycgrcdc8z.jpeg?q=70&crop=false",
+        amt: 5499,
+        ram: 4,
+        rom: 64,
+        seller: "Poco",
+        catagory: "Mobiles",
+        "reviews": 4.0,
+        info:"https://www.flipkart.com/search?q=poco+c51&sid=tyy%2C4io&as=on&as-show=on&otracker=AS_QueryStore_OrganicAutoSuggest_1_6_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_6_na_na_ps&as-pos=1&as-type=RECENT&suggestionId=poco+c51%7CMobiles&requestId=e3d09653-c4cc-4a24-a9b6-b34ce64d1145&as-searchtext=poco%20c",
+    },
+    
+    { 
+        id: 8,
+        name: "Samsung Galaxy S21 FE",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/a/y/g/-original-imagtnqkutcyzhgq.jpeg?q=70&crop=false",
+        amt: 33999,
+        ram: 8,
+        rom: 128,
+        seller: "Samsung",
+        catagory: "Mobiles",
+        "reviews": 4.3,
+        info:"https://www.flipkart.com/search?q=Samsung%20Galaxy%20S21%20FE&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off",
+    },
+    
+    { 
+        id: 9,
+        name: "Apple iPhone 13 Pro Max",
+        img: "https://rukminim2.flixcart.com/image/416/416/ktketu80/mobile/c/g/4/iphone-13-pro-max-mlll3hn-a-apple-original-imag6vpg3r7dyvhm.jpeg?q=70&crop=false",
+        amt: 179999,
+        ram: 8,
+        rom: 128,
+        seller: "Apple",
+        catagory: "Mobiles",
+        "reviews": 4.6,
+        info: "http://www.flipkart.com/apple-iphone-13-pro-max-graphite-1-tb/p/itmdbb23fa63b708?pid=MOBG6VF56FGKA8SG&lid=LSTMOBG6VF56FGKA8SGGXC16M&marketplace=FLIPKART&q=Apple+iPhone+13+Pro+Max&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=d858d247-1a29-45a4-a0db-6aba597c1f9b.MOBG6VF56FGKA8SG.SEARCH&ppt=sp&ppn=sp&ssid=8o1x1tfs4g0000001709622307706&qH=aa1ed423b9427d13",
+    },
+    
+    { 
+        id: 10,
+        name: "Google Pixel 7",
+        img: "https://i.gadgets360cdn.com/products/large/Pixel-7-630x800-1665067238.jpg?downsize=*:360",
+        amt: 46999,
+        ram: 12,
+        rom: 256,
+        seller: "Google",
+        catagory: "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/google-pixel-7-lemongrass-128-gb/p/itm45d75002be0e7?pid=MOBGHW44ZSN5EPGU&lid=LSTMOBGHW44ZSN5EPGURSVVHV&marketplace=FLIPKART&q=google+pixel+7&store=tyy%2F4io&srno=s_1_5&otracker=AS_Query_OrganicAutoSuggest_5_12_na_na_ps&otracker1=AS_Query_OrganicAutoSuggest_5_12_na_na_ps&fm=Search&iid=f02ce617-32fd-4441-bbf1-28e74f73f72d.MOBGHW44ZSN5EPGU.SEARCH&ppt=pp&ppn=pp&ssid=arstml0jr40000001709622378834&qH=2c2218c14db92da0",
+    },
+    
+    { 
+        id: 11,
+        name: "OnePlus 10T",
+        img: "https://i.gadgets360cdn.com/products/large/oneplus-10t-oneplus-636x800-1659541437.jpg?downsize=*:360",
+        amt: 42790,
+        ram: 8,
+        rom: 128,
+        seller: "OnePlus",
+        catagory: "Mobiles",
+        "reviews": 4.2,
+        info: "https://www.flipkart.com/oneplus-10t-5g-moonstone-black-256-gb/p/itm9a8677129b2bf?pid=MOBGHBNGWSNHGCE3&lid=LSTMOBGHBNGWSNHGCE3N3FUJN&marketplace=FLIPKART&q=one+plus+10t+5g&store=tyy%2F4io&srno=s_1_1&otracker=AS_Query_OrganicAutoSuggest_4_11_na_na_ps&otracker1=AS_Query_OrganicAutoSuggest_4_11_na_na_ps&fm=Search&iid=bd21ba27-e06e-4b24-85fb-2c7105a58e41.MOBGHBNGWSNHGCE3.SEARCH&ppt=pp&ppn=pp&ssid=z24pg4yv000000001709622468268&qH=588ac5093205d096",
+    },
+    
+    { 
+        id: 12,
+        name: "REDMI Note 13 Pro+ 5G",
+        img: "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/u/5/f/-original-imagwu9fyya8h6mg.jpeg?q=70&crop=false",
+        amt: 35999,
+        ram: 8,
+        rom: 128,
+        seller: "Xiaomi",
+        catagory: "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/redmi-note-13-pro-5g-coral-purple-128-gb/p/itm810ee84cdaac6?pid=MOBGWFHFGWZVVYSK&lid=LSTMOBGWFHFGWZVVYSKYJV811&marketplace=FLIPKART&q=REDMI+Note+13+Pro%2B+5G&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=e28dc0a6-d752-42fb-a5ca-f0e1f20c02b8.MOBGWFHFGWZVVYSK.SEARCH&ppt=pp&ppn=pp&ssid=np511rn0c00000001709622538599&qH=c7671f92f945bdbf",
+    },
+    
+    { 
+        id: 13,
+        name: "Samsung Galaxy Z Fold 4",
+        img: "https://i.gadgets360cdn.com/products/large/samsung-galaxy-z-fold-4-gadgets360-db-601x800-1660137250.jpg",
+        amt: 124999,
+        ram: 8,
+        rom: 128,
+        seller: "Samsung",
+        catagory: "Mobiles",
+        "reviews": 3.1,
+        info: "https://www.flipkart.com/samsung-galaxy-z-fold4-5g-graygreen-512-gb/p/itm53fbc22a21754?pid=MOBGHFGDWBAEAUHC&lid=LSTMOBGHFGDWBAEAUHCFQUOAJ&marketplace=FLIPKART&q=Samsung+Galaxy+Z+Fold+4&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=7daf7d9b-fcfb-455b-9be0-1e9cb0b4b52a.MOBGHFGDWBAEAUHC.SEARCH&ppt=pp&ppn=pp&ssid=a8mfzelja80000001709622580275&qH=e65472e781beed2c",
+    },
+    
+    { 
+        id: 14,
+        name: "Apple iPhone 14",
+        img: "https://i.gadgets360cdn.com/products/large/iphone-14-pro-apple-583x800-1662583181.jpg?downsize=*:360",
+        amt: 79999,
+        ram: 6,
+        rom: 128,
+        seller: "Apple",
+        catagory: "Mobiles",
+        "reviews": 4.6,
+        info: "https://www.flipkart.com/apple-iphone-14-midnight-128-gb/p/itm9e6293c322a84?pid=MOBGHWFHECFVMDCX&lid=LSTMOBGHWFHECFVMDCXXRTRJG&marketplace=FLIPKART&q=apple+iphone+14&store=tyy%2F4io&spotlightTagId=BestsellerId_tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_2_7_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_2_7_na_na_ps&fm=search-autosuggest&iid=42b6eaa5-7fff-46c9-837d-a3fd0555efe4.MOBGHWFHECFVMDCX.SEARCH&ppt=sp&ppn=sp&ssid=dbr7o33mbk0000001709622644100&qH=67c8ed58edad59ff",
+    },
+    
+    { 
+        "id": 15,
+        "name": "Google Pixel 7 Pro",
+        "img": "https://i.gadgets360cdn.com/products/large/Pixel-7-Pro-643x800-1665067249.jpg?downsize=*:360",
+        "amt": 64999,
+        ram: 6,
+        rom: 128,
+        "seller": "Google",
+        "catagory": "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/google-pixel-7-pro-snow-128-gb/p/itmb74dc5c3b3eb5?pid=MOBGHW44HHEMNGHW&lid=LSTMOBGHW44HHEMNGHWSCSMWJ&marketplace=FLIPKART&q=google+pixel+7+pro&store=tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_15_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_15_na_na_ps&fm=search-autosuggest&iid=c65f26c5-5b7e-4a43-bae7-fdb0d94facc6.MOBGHW44HHEMNGHW.SEARCH&ppt=sp&ppn=sp&ssid=od2zmfw70w0000001709622680996&qH=0e242f7a7ab64527",
+    },
+    
+    { 
+        "id": 16,
+        "name": "OnePlus 11R",
+        "img": "https://i.gadgets360cdn.com/products/large/oneplus-11-5g-db-709x800-1672829576.jpg?downsize=*:360",
+        "amt": 40115,
+        ram: 8,
+        rom: 128,
+        "seller": "OnePlus",
+        "catagory": "Mobiles",
+        "reviews": 4.5,
+        info: "https://www.flipkart.com/oneplus-11r-5g-sonic-black-256-gb/p/itmd8344a066fd54?pid=MOBGN3AUFRGVERFB&lid=LSTMOBGN3AUFRGVERFBXVHDHS&marketplace=FLIPKART&q=one+plus+11r&store=tyy%2F4io&srno=s_1_1&otracker=AS_Query_OrganicAutoSuggest_4_8_na_na_ps&otracker1=AS_Query_OrganicAutoSuggest_4_8_na_na_ps&fm=search-autosuggest&iid=5dbbd8ad-1b31-477a-aaa6-041b349e2227.MOBGN3AUFRGVERFB.SEARCH&ppt=pp&ppn=pp&ssid=z8cquzyls00000001709622734859&qH=58432f2d019ce371",
+    },
+    
+    { 
+        "id": 17,
+        "name": "Xiaomi Mi 13 Pro",
+        "img": "https://i.gadgets360cdn.com/products/large/xiaomi-13-pro-db-709x800-1670825991.jpg?downsize=*:360",
+        "amt": 59999,
+        ram: 6,
+        rom: 128,
+        "seller": "Xiaomi",
+        "catagory": "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/redmi-note-13-pro-5g-coral-purple-128-gb/p/itm810ee84cdaac6?pid=MOBGWFHFGWZVVYSK&lid=LSTMOBGWFHFGWZVVYSKYJV811&marketplace=FLIPKART&q=Xiaomi+Mi+13+Pro&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=search-autosuggest&iid=9aee073e-30ee-443f-b34d-15fcff32c3ec.MOBGWFHFGWZVVYSK.SEARCH&ppt=pp&ppn=pp&ssid=dygtcawcs00000001709622849255&qH=b28d63a18c7dbc54",
+    },
+    
+    { 
+        "id": 18,
+        "name": "Oppo Find N2 Filp",
+        "img": "https://i.gadgets360cdn.com/products/large/oppo-find-x6-pro-db-636x800-1679394593.jpg",
+        "amt": 74990,
+        ram: 8,
+        rom: 256,
+        "seller": "Oppo",
+        "catagory": "Mobiles",
+        "reviews": 4.2,
+        info: "https://www.flipkart.com/oppo-find-n2-flip-moonlit-purple-256-gb/p/itm8cfed9af48231?pid=MOBGN2NDCSQ3F3JY&lid=LSTMOBGN2NDCSQ3F3JYGI4MIN&marketplace=FLIPKART&q=Oppo+Find+X6+Pro&store=tyy%2F4io&srno=s_1_2&otracker=search&otracker1=search&fm=search-autosuggest&iid=d122f134-7996-47a6-a69a-ae4ccffe851f.MOBGN2NDCSQ3F3JY.SEARCH&ppt=pp&ppn=pp&ssid=6ert8cvyg00000001709622891842&qH=96799628edf81910",
+    },
+    
+    { 
+        "id": 19,
+        "name": "Vivo X90 Pro",
+        "img": "https://i.gadgets360cdn.com/products/large/db-vivo-x90-709x800-1670582382.jpg?downsize=*:360",
+        "amt": 54490,
+        ram: 12,
+        rom: 256,
+        "seller": "Vivo",
+        "catagory": "Mobiles",
+        "reviews": 4.4,
+        info: "https://www.flipkart.com/vivo-x90-pro-legendary-black-256-gb/p/itme1bb24e62003b?pid=MOBGZVNN3CRFTMJS&lid=LSTMOBGZVNN3CRFTMJSC8SKJJ&marketplace=FLIPKART&q=vivo+x90+pro&store=tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_8_na_na_ps&fm=search-autosuggest&iid=419bceaa-1e78-46fa-bb07-bab089e44cb6.MOBGZVNN3CRFTMJS.SEARCH&ppt=pp&ppn=pp&ssid=iuxih25uts0000001709622977300&qH=7bbd1a1e78e3f94a",
+    },
+    
+    { 
+        "id": 20,
+        "name": "Realme Narzo 60X 5G",
+        "img": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/v/3/e/narzo-60x-5g-rmx3782-realme-original-imagtjckcetgqd9y.jpeg?q=70&crop=false",
+        "amt": 12841,
+        ram: 6,
+        rom: 128,
+        "seller": "Realme",
+        "catagory": "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/realme-narzo-60x-5g-nebula-purple-128-gb/p/itm906a3c913a97f?pid=MOBGTNS6C5MAJPMZ&lid=LSTMOBGTNS6C5MAJPMZBJRMO1&marketplace=FLIPKART&q=realme+narzo&store=tyy%2F4io&srno=s_1_6&otracker=AS_QueryStore_OrganicAutoSuggest_1_12_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_12_na_na_ps&fm=Search&iid=89e275bd-9a28-4a8c-a97a-ae2c0e849ca7.MOBGTNS6C5MAJPMZ.SEARCH&ppt=sp&ppn=sp&ssid=npk15tkz1s0000001709623090426&qH=00039a0c877867cc",
+    },
+    
+    { 
+        "id": 22,
+        "name": "Realme 12 Pro+ 5G",
+        "img": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/z/f/g/-original-imagxhd5gqhzszeb.jpeg?q=70&crop=false",
+        "amt": 31999,
+        ram: 8,
+        rom: 128,
+        "seller": "Realme",
+        "catagory": "Mobiles",
+        "reviews": 4.5,
+        info: "https://www.flipkart.com/realme-12-pro-5g-navigator-beige-256-gb/p/itm7f042fb6aebdb?pid=MOBGWH8SFQGSBNDU&lid=LSTMOBGWH8SFQGSBNDURMZVFN&marketplace=FLIPKART&q=realme+12+pro&store=tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&fm=search-autosuggest&iid=e7136267-b382-4ebf-ba7b-0d2c1ad26c16.MOBGWH8SFQGSBNDU.SEARCH&ppt=sp&ppn=sp&ssid=w2appdcals0000001709623279526&qH=fd53babedc54877e",
+    },
+    
+    { 
+        "id": 23,
+        "name": "Xiaomi Mi 11T Pro",
+        "img": "https://i.gadgets360cdn.com/products/large/redmi-note-11t-5g-824x800-1638256477.jpg?downsize=*:360",
+        "amt": 49990,
+        ram: 12,
+        rom: 256,
+        "seller": "Xiaomi",
+        "catagory": "Mobiles",
+        "reviews": 4.1,
+        info: "https://www.flipkart.com/xiaomi-11t-pro-5g-hyperphone-celestial-magic-256-gb/p/itma7d02f2cf251e?pid=MOBGB244HU5AGUAZ&lid=LSTMOBGB244HU5AGUAZXQROKE&marketplace=FLIPKART&q=Xiaomi+Mi+11T+Pro&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=search-autosuggest&iid=f520a0a3-a3d3-430a-adf5-216202dccdfe.MOBGB244HU5AGUAZ.SEARCH&ppt=pp&ppn=pp&ssid=ozzqgwg0680000001709623394591&qH=3afd254af6be783b",
+    },
+    
+    { 
+        "id": 24,
+        "name": "Motorola Edge 40 Neo",
+        "img": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/e/s/s/edge-40-neo-payj0005in-motorola-original-imagtkehwcgvttfb.jpeg?q=70&crop=false",
+        "amt": 22999,
+        ram: 12,
+        rom: 256,
+        "seller": "Motorola",
+        "catagory": "Mobiles",
+        "reviews": 4.3,
+        info: "https://www.flipkart.com/motorola-edge-40-neo-caneel-bay-128-gb/p/itm122f351a3a2a3?pid=MOBGQFX6K7YQJRSY&lid=LSTMOBGQFX6K7YQJRSY6BK1PK&marketplace=FLIPKART&q=Motorola+Edge+40+Neo&store=tyy%2F4io&spotlightTagId=BestsellerId_tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=337b4029-bbef-4710-a82c-bd244e995b32.MOBGQFX6K7YQJRSY.SEARCH&ppt=sp&ppn=sp&ssid=u4x65tomeo0000001709623436371&qH=ab0d732975d3be88",
+    },
+    {
+        "id": 25,
+        "name": "Infinix SMART 8",
+        "img": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/f/o/2/-original-imagxsc4zkwzpqkc.jpeg?q=70&crop=false",
+        "amt": 8699,
+        "ram": 8,
+        "rom": 128,
+        "seller": "Infinix",
+        "catagory": "Mobiles",
+        "reviews": 4.4,
+        "info": "https://www.flipkart.com/infinix-smart-8-timber-black-128-gb/p/itmb5696a34ad441?pid=MOBGWV5HAFHQJ4CB&lid=LSTMOBGWV5HAFHQJ4CBVTMJ6P&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_1&otracker=browse&fm=Search&iid=5ae9f9e7-f6f6-4ce8-b0b5-5690ac7a2dde.MOBGWV5HAFHQJ4CB.SEARCH&ppt=browse&ppn=browse&ssid=6ulydbyecg0000001709625117324",
+    },
+    /* {
+    "id": 26,
+    "name": "Infinix Note 30 5G",
+    "img": "https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/c/p/h/-original-imagqhyftnseqttk.jpeg?q=70&crop=false",
+    "amt": 14999,
+    "ram": 4,
+    "rom": 128,
+    "seller": "Infinix",
+    "catagory": "Mobiles",
+    "info": "https://www.flipkart.com/infinix-note-30-5g-magic-black-128-gb/p/itm12c179f0a6281?pid=MOBGQ9HPMWYHPWY2&lid=LSTMOBGQ9HPMWYHPWY2V4EXOR&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_10&otracker=browse&fm=Search&iid=5ae9f9e7-f6f6-4ce8-b0b5-5690ac7a2dde.MOBGQ9HPMWYHPWY2.SEARCH&ppt=browse&ppn=browse&ssid=6ulydbyecg0000001709625117324",
+} */
+    
+  ];
+  
+  const productsContainer = document.querySelector(".products");
+  const categoryList = document.querySelector(".category-list");
+  const brandList = document.querySelector(".brand-list");
+  
+  function displayProducts(products) {
+    if (products.length > 0) {
+      const product_details = products
+        .map(
+          (product) => `
+    <div class="product">
+    <div class="img">
+      <img src="${product.img}" alt="${product.name}" />
+    </div>
+    <div class="product-details">
+      <span class="name">${product.name}</span>
+      <span class="amt">₹ ${product.amt}</span>
+      <span class="seller">${product.seller}</span>
+      <span class="ram">RAM: ${product.ram}</span>
+      <span class="rom">Storage: ${product.rom}</span>
+      <span class="rom">Review Rating: ${product.reviews}</span><br>
+      <button class="button-3" role="button"><a href="${product.info}" target="_blank" style="text-decoration: none;">Know More</a></button>
+    </div>
+  </div>`
+        )
+        .join("");
+  
+      productsContainer.innerHTML = product_details;
+    } else {
+      productsContainer.innerHTML = "<h3>No Products Available</h3>";
+    }
+  }
+  
+  function setCategories() {
+    const allCategories = data.map((product) => product.catagory);
+    //console.log(allCategories);
+    const catagories = [
+      "All",
+      ...allCategories.filter((product, index) => {
+        return allCategories.indexOf(product) === index;
+      }),
+    ];
+    //console.log(catagories);
+    categoryList.innerHTML = catagories.map((catagory) => `<label style="margin-right: 8px;">${catagory}</label>`).join("");
+  
+    categoryList.addEventListener("click", (e) => {
+      const selectedCatagory = e.target.textContent;
+      selectedCatagory === "All" ? displayProducts(data) : displayProducts(data.filter((product) => product.catagory == selectedCatagory));
+    });
+  }
+
+  function setBrands() {
+    const allBrands = data.map((product) => product.seller);
+    const uniqueBrands = [...new Set(allBrands)]; // Using Set to get unique brands
+    const brands = ["All", ...uniqueBrands]; // Including "All" option at the beginning
+    brandList.innerHTML = brands.map((brand) => `<li>${brand}</li>`).join(""); // Creating list items for each brand
+
+    brandList.addEventListener("click", (e) => {
+        const selectedBrand = e.target.textContent;
+        if (selectedBrand === "All") {
+            displayProducts(data); // Display all products if "All" is selected
+        } else {
+            const filteredProducts = data.filter((product) => product.seller === selectedBrand); // Filter products by selected brand
+            displayProducts(filteredProducts); // Display filtered products
+        }
+    });
+}
+
+/* Price Low-High Sorting */
+const sortLowToHigh = document.querySelector("#sortLowToHigh");
+const sortHighToLow = document.querySelector("#sortHighToLow");
+
+sortLowToHigh.addEventListener("click", () => {
+    const sortedProducts = data.sort((a, b) => a.amt - b.amt);
+    displayProducts(sortedProducts);
+});
+
+sortHighToLow.addEventListener("click", () => {
+    const sortedProducts = data.sort((a, b) => b.amt - a.amt);
+    displayProducts(sortedProducts);
+});
+
+/* Rating Sorting */
+const sortLow = document.querySelector("#sortLow");
+const sortHigh = document.querySelector("#sortHigh");
+
+sortLow.addEventListener("click", () => {
+    const sortedProducts = data.sort((a, b) => a.reviews - b.reviews);
+    displayProducts(sortedProducts);
+});
+
+sortHigh.addEventListener("click", () => {
+    const sortedProducts = data.sort((a, b) => b.reviews - a.reviews);
+    displayProducts(sortedProducts);
+});
+
+
+
+/* RAM & ROM Filter */
+const ram = document.querySelector("#ram");
+        const rom = document.querySelector("#rom");
+
+        function setRamAndRom() {
+            ram.addEventListener("change", (e) => {
+                const selectedRam = e.target.value;
+                if (selectedRam) {
+                    displayProducts(data.filter((product) => product.ram == selectedRam));
+                } else {
+                    displayProducts(data);
+                }
+            });
+
+            rom.addEventListener("change", (e) => {
+                const selectedRom = e.target.value;
+                if (selectedRom) {
+                    displayProducts(data.filter((product) => product.rom == selectedRom));
+                } else {
+                    displayProducts(data);
+                }
+            });
+        }
+
+
+
+
+  const priceRange = document.querySelector("#priceRange");
+  const priceValue = document.querySelector(".priceValue");
+  
+  function setPrices() {
+    const priceList = data.map((product) => product.amt);
+    const minPrice = Math.min(...priceList);
+    const maxPrice = Math.max(...priceList);
+    priceRange.min = minPrice;
+    priceRange.max = maxPrice;
+    priceValue.textContent = "₹ " + maxPrice;
+    /* priceVlaue1.textContent = "Rs." + minPrice; */
+  
+    priceRange.addEventListener("input", (e) => {
+      priceValue.textContent = "₹ " + e.target.value;
+      displayProducts(data.filter((product) => product.amt <= e.target.value));
+    });
+  }
+  
+  const txtSearch = document.querySelector("#txtSearch");
+  txtSearch.addEventListener("keyup", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    if (value) {
+      displayProducts(data.filter((product) => product.name.toLowerCase().indexOf(value) !== -1));
+    } else {
+      displayProducts(data);
+    }
+  });
+  
+  displayProducts(data);
+  setCategories();
+  setBrands();
+  setPrices();
+  setRamAndRom();
+  </script>
+</body>
+</html>

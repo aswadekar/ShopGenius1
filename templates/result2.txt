@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison - Result</title>
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #e3b34b;
+        }
+
+        header {
+            display: flex;
+            align-items: left;
+            justify-content: left;
+            padding: 1rem;
+            background-color: #111f3b;
+            color: #fff;
+            height: 70px;
+            
+        }
+
+        .logo {
+            width: 240px;
+            height: auto;
+            margin-left: 0.2rem;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-title {
+          text-align: center;
+          margin-bottom: 2rem;
+          border: 3px solid black;
+          border-radius: 10px;
+          padding: 0px 23px;
+          margin-top: 2rem;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .product-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-right: 2rem;
+        }
+
+        .prices {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            padding-top: 2rem;
+            padding-left: 9rem;
+        }
+
+        .price-item {
+            margin-bottom: 1rem;
+        }
+        .price-item img {
+          border-radius: 5px;
+          
+        }
+        footer{
+            position: absolute;
+            height: 60px;
+            width: 100%;
+            margin-top: 2.56rem;
+            background-color: #111f3b;
+            color: #FFFFFF;
+            align-items: center;
+            text-align: center;
+        }
+        .price-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            width: 140%;
+        }
+
+        .image-wrapper {
+            margin-right: 1.6rem; /* Adjust margin as needed */
+        }
+
+        .image-wrapper img {
+            width: 120px;
+            height: 60px;
+        }
+        .price-details {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+
+        @media only screen and (max-width: 768px) {
+            .product-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-img {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="https://github.com/aswadekar/E-Commerce-Website/blob/main/logo3.jpg?raw=true" alt="ShopGenius Logo" class="logo">
+</header>
+
+<div class="container">
+    <div class="product-title">
+        <h1>Product Name: {{ product }}</h1>
+    </div>
+    <div class="product-info">
+        <img src="{{ flipkart_img }}" alt="Not Found" class="product-img" style="border-radius: 12px;">
+        <div class="prices">
+          <div class="price-item">
+            <div class="image-wrapper">
+                <img src="https://data.cbonds.com/organisations_logos/23557/1601551006amazon-625x352.jpg" alt="" width="120px" height="60px">
+            </div>
+            <div class="price-details">
+                Amazon: {{ amazon_price }} &nbsp;&nbsp; <a href="{{ amazon_link }}" target="_blank">Link</a>
+            </div>
+        </div>
+        
+        <div class="price-item">
+          <div class="image-wrapper">
+              <img src="https://cdn.worldvectorlogo.com/logos/flipkart.svg" alt="" width="120px" height="60px">
+          </div>
+          <div class="price-details">
+              Flipkart: {{ flipkart_price }} &nbsp;&nbsp; <a href="{{ flipkart_link }}" target="_blank">Link</a>
+          </div>
+      </div>
+      
+      <div class="price-item">
+          <div class="image-wrapper">
+              <img src="https://zeevector.com/wp-content/uploads/2021/02/Croma-Logo-PNG.png" alt="" width="120px" height="60px">
+          </div>
+          <div class="price-details">
+              Croma: {{ croma_price }} &nbsp;&nbsp; <a href="{{ croma_link }}" target="_blank">Link</a>
+          </div>
+      </div>
+      
+      <div class="price-item">
+          <div class="image-wrapper">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Reliance_Digital.svg/491px-Reliance_Digital.svg.png" alt="" width="120px" height="60px">
+          </div>
+          <div class="price-details">
+              Reliance Digital: {{ reliance_price }} &nbsp;&nbsp; <a href="{{ croma_link }}" target="_blank">Link</a>
+          </div>
+      </div>
+      
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p style="margin-top: 22px;">&copy; 2024 ShopGenius. All rights reserved &nbsp;&nbsp;|&nbsp;&nbsp; Website Designed By Atharva Wadekar</p>
+</footer>
+</body>
+</html>
+
+
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
+        response = requests.get(f"https://www.amazon.in/s?k={product_name.replace(' ', '+')}", headers=headers)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        amazon_price = soup.find("span", {"class": "a-price"}).text
+        
+        if amazon_price:
+            
+            price_str = str(amazon_price)
+            price_str = price_str[:7]
+            """ price_str = price_str.rstrip("1,49₹")
+            price_str = price_str.rstrip("₹7") """
+            price_str[:2]
+            """ price_str = price_str.lstrip('₹71,499') """
+            print(price_str)
+            
+            if price_str.endswith('.00'):
+                price_str = price_str[:3]
+            amazon_price = price_str
+        else:
+            # If the price is not immediately available, wait for 5 seconds and try again
+            import time
+            time.sleep(5)
+            response = requests.get(f"https://www.amazon.in/s?k={product_name.replace(' ', '+')}", headers=headers)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            amazon_price = soup.find("span", {"class": "a-price"})
+            if amazon_price:
+                price_str = amazon_price.text.strip('₹₹')
+                
+
+                if price_str.endswith('.00'):
+                    price_str = price_str[:-1]
+                amazon_price = price_str
+            else:
+                amazon_price = "Product not found"
+
+        amazon_product_link = soup.find('a', {'class': 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})
+        amazon_link = amazon_product_link['href'] if amazon_product_link else None
+        amazon_link = f"https://www.amazon.in{amazon_link}" if amazon_link else None
