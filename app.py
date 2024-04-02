@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Request
+from werkzeug.wrappers import Response
 from bs4 import BeautifulSoup
-""" from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager """
 import requests
 
 app = Flask(__name__)
@@ -21,10 +20,10 @@ def index():
         product_name = request.form['product']
         
         # AMAZON
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
+        """ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
         response = requests.get(f"https://www.amazon.in/s?k={product_name.replace(' ', '+')}&crid=3DZ0WF6US5VDI&sprefix={product_name.replace(' ', '+')}%2Caps%2C373&ref=nb_sb_noss_2", headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        amazon_price = soup.find('span', {'class': 'a-price'})
+        amazon_price = soup.find('span', {'class': 'a-offscreen'})
         if not amazon_price:
             amazon_price = "Product not found"
         else:
@@ -44,7 +43,27 @@ def index():
             
         amazon_product_link = soup.find('a', {'class': 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})
         amazon_link = amazon_product_link['href'] if amazon_product_link else None
-        amazon_link = f"https://www.amazon.in{amazon_link}" if amazon_link else None
+        amazon_link = f"https://www.amazon.in{amazon_link}" if amazon_link else None """
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
+        response = requests.get(f"https://www.amazon.in/s?k={product_name.replace(' ', '+')}&crid=3DZ0WF6US5VDI&sprefix={product_name.replace(' ', '+')}%2Caps%2C373&ref=nb_sb_noss_2", headers=headers)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Find the price of the first non-sponsored product
+        products = soup.find_all('div', {'data-component-type': 's-search-result'})
+        amazon_price = None
+        amazon_link = None
+        for product in products:
+            if 'sponsored' not in product['data-index']:
+                price_element = product.find('span', {'class': 'a-price'})
+                if price_element:
+                    price = price_element.text.strip()[1:]
+                    price_num = float(''.join(e for e in price if e.isdigit()) or 0)
+                    if amazon_price is None or price_num < float(amazon_price[1:]):
+                        amazon_price = price_element.text.strip()
+                        amazon_link = 'https://www.amazon.in' + product.find('a', {'class': 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'})['href']
+
+        if amazon_price is None:
+            amazon_price = "Product not found"
         
 
         # FLIPKART
@@ -107,3 +126,7 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+def handler(request: Request) -> Response:
+    return app.dispatch_request(request.environ)
